@@ -41,7 +41,7 @@ stages:
             displayName: 'Terraform : azurerm plan'
             inputs:
               command: plan
-              workingDirectory: '$(System.DefaultWorkingDirectory)/_AAzureDevOps/TerraformAzureDevOps'
+              workingDirectory: '/home/vsts/work/1/_AAzureDevOps/TerraformAzureDevOps'
               environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendAzureRmResourceGroupName: rgazuredevops
@@ -52,7 +52,7 @@ stages:
             displayName: 'Terraform : azurerm apply'
             inputs:
               command: apply
-              workingDirectory: '$(System.DefaultWorkingDirectory)/_AAzureDevOps/TerraformAzureDevOps'
+              workingDirectory: '/home/vsts/work/1/_AAzureDevOps/TerraformAzureDevOps'
               environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendAzureRmResourceGroupName: rgazuredevops
