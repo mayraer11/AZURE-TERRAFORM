@@ -1,61 +1,61 @@
 trigger:
     - master
-    stages:
-    - stage: Build
-      jobs:
-      - job: Build
-        pool:
-          vmImage: 'ubuntu-latest'
-        continueOnError: true
-        steps:
-        - task: PublishPipelineArtifact@1
-          inputs:
-            path: $(System.DefaultWorkingDirectory)
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    continueOnError: true
+    steps:
+    - task: PublishPipelineArtifact@1
+      inputs:
+        path: $(System.DefaultWorkingDirectory)
+        artifact: _AAzureDevOps
+- stage: Deploy
+  jobs:
+  - deployment: DeployWeb
+    pool:
+      vmImage: 'ubuntu-16.04'
+    environment: 'Desarrollo'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: current
             artifact: _AAzureDevOps
-    - stage: Deploy
-      jobs:
-      - deployment: DeployWeb
-        pool:
-          vmImage: 'ubuntu-16.04'
-        environment: 'Desarrollo'
-        strategy:
-          runOnce:
-            deploy:
-              steps:
-              - download: current
-                artifact: _AAzureDevOps
-              - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
-                displayName: 'Install Terraform 0.12.17'
-                inputs:
-                  terraformVersion: 0.12.17
-              - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
-                displayName: 'Terraform : azurerm init'
-                inputs:
-                  workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
-                  backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
-                  backendAzureRmResourceGroupName: rgazuredevops
-                  backendAzureRmStorageAccountName: saazuredevops03082019103
-                  backendAzureRmContainerName: scazuredevops
-                  backendAzureRmKey: terraformAzure.tfstate
-              - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
-                displayName: 'Terraform : azurerm plan'
-                inputs:
-                  command: plan
-                  workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
-                  environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
-                  backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
-                  backendAzureRmResourceGroupName: rgazuredevops
-                  backendAzureRmStorageAccountName: saazuredevops03082019103
-                  backendAzureRmContainerName: scazuredevops
-                  backendAzureRmKey: terraformAzure.tfstate
-              - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
-                displayName: 'Terraform : azurerm apply'
-                inputs:
-                  command: apply
-                  workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
-                  environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
-                  backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
-                  backendAzureRmResourceGroupName: rgazuredevops
-                  backendAzureRmStorageAccountName: saazuredevops03082019103
-                  backendAzureRmContainerName: scazuredevops
-                  backendAzureRmKey: terraformAzure.tfstate
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+            displayName: 'Install Terraform 0.12.17'
+            inputs:
+              terraformVersion: 0.12.17
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+            displayName: 'Terraform : azurerm init'
+            inputs:
+              workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
+              backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
+              backendAzureRmResourceGroupName: rgazuredevops
+              backendAzureRmStorageAccountName: saazuredevops03082019103
+              backendAzureRmContainerName: scazuredevops
+              backendAzureRmKey: terraformAzure.tfstate
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+            displayName: 'Terraform : azurerm plan'
+            inputs:
+              command: plan
+              workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
+              environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
+              backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
+              backendAzureRmResourceGroupName: rgazuredevops
+              backendAzureRmStorageAccountName: saazuredevops03082019103
+              backendAzureRmContainerName: scazuredevops
+              backendAzureRmKey: terraformAzure.tfstate
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+            displayName: 'Terraform : azurerm apply'
+            inputs:
+              command: apply
+              workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
+              environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
+              backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
+              backendAzureRmResourceGroupName: rgazuredevops
+              backendAzureRmStorageAccountName: saazuredevops03082019103
+              backendAzureRmContainerName: scazuredevops
+              backendAzureRmKey: terraformAzure.tfstate
