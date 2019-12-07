@@ -1,0 +1,9 @@
+Local/provider.tf
+Local/terraform.tfstate
+Local/terraform.tfstate.backup
+Local/.terraform/terraform.tfstate
+Local/.terraform/plugins/windows_amd64/lock.json
+Local/.terraform/plugins/windows_amd64/terraform-provider-azurerm_v1.27.0_x4.exe
+TerraformCloud/.terraform/terraform.tfstate
+TerraformCloud/.terraform/plugins/windows_amd64/lock.json
+TerraformCloud/.terraform/plugins/windows_amd64/terraform-provider-azurerm_v1.38.0_x4.exe

@@ -24,7 +24,6 @@ resource "azurerm_storage_account" "saazuredevops" {
 
 resource "azurerm_storage_container" "scazuredevops" {
    name = "scazuredevops"
-   resource_group_name = azurerm_resource_group.rgazuredevops.name
    storage_account_name = azurerm_storage_account.saazuredevops.name
    container_access_type = "blob"
 }
