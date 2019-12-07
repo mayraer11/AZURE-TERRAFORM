@@ -31,7 +31,7 @@ stages:
           - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
             displayName: 'Terraform : azurerm init'
             inputs:
-              workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/_AAzureDevOps/TerraformAzureDevOps'
               backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendAzureRmResourceGroupName: rgazuredevops
               backendAzureRmStorageAccountName: saazuredevops03082019103
@@ -41,7 +41,7 @@ stages:
             displayName: 'Terraform : azurerm plan'
             inputs:
               command: plan
-              workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/_AAzureDevOps/TerraformAzureDevOps'
               environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendAzureRmResourceGroupName: rgazuredevops
@@ -52,7 +52,7 @@ stages:
             displayName: 'Terraform : azurerm apply'
             inputs:
               command: apply
-              workingDirectory: '$(System.DefaultWorkingDirectory)/_mayraer11_AZURE-TERRAFORM/TerraformAzureDevOps'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/_AAzureDevOps/TerraformAzureDevOps'
               environmentServiceNameAzureRM: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendAzureRmResourceGroupName: rgazuredevops
