@@ -5,7 +5,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'windows-2019'
     continueOnError: true
     steps:
     - task: PublishPipelineArtifact@1
@@ -16,7 +16,7 @@ stages:
   jobs:
   - deployment: DeployWeb
     pool:
-      vmImage: 'ubuntu-18.04'
+      vmImage: 'windows-2019'
     environment: 'Desarrollo'
     strategy:
       runOnce:
