@@ -5,7 +5,7 @@ stages:
   jobs:
   - job: Build
     pool:
-      vmImage: 'windows-2019'
+      vmImage: 'ubuntu-16.04'
     continueOnError: true
     steps:
     - task: PublishPipelineArtifact@1
@@ -16,7 +16,7 @@ stages:
   jobs:
   - deployment: DeployWeb
     pool:
-      vmImage: 'windows-2019'
+      vmImage: 'ubuntu-16.04'
     environment: 'Desarrollo'
     strategy:
       runOnce:
@@ -31,7 +31,7 @@ stages:
           - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
             displayName: 'Terraform : azurerm init'
             inputs:
-              workingDirectory: '$(System.DefaultWorkingDirectory)/_AAzureDevOps/TerraformAzureDevOps'
+              workingDirectory: '/home/vsts/work/1/_AAzureDevOps/TerraformAzureDevOps'
               backendServiceArm: 'Personal (00b37f75-2032-43ed-a73c-ba30e7336ca8)'
               backendAzureRmResourceGroupName: rgazuredevops
               backendAzureRmStorageAccountName: saazuredevops03082019103
