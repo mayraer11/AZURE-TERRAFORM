@@ -12,7 +12,7 @@ resource "azurerm_resource_group" "rgazuredevops" {
 }
 
 resource "azurerm_storage_account" "saazuredevops" {
-  name                     = "saazuredevops03082019103baz"
+  name                     = "saazuredevops03082019baz"
   resource_group_name      = azurerm_resource_group.rgazuredevops.name
   location                 = azurerm_resource_group.rgazuredevops.location
   account_tier             = "Standard"
