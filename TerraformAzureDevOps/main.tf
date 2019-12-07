@@ -7,12 +7,12 @@ terraform {
 }
 
 resource "azurerm_resource_group" "rgazuredevops" {
-  name     = "rgazuredevops-baz"
+  name     = "rgazuredevopsbaz"
   location = "eastus"
 }
 
 resource "azurerm_storage_account" "saazuredevops" {
-  name                     = "saazuredevops03082019103-baz"
+  name                     = "saazuredevops03082019103baz"
   resource_group_name      = azurerm_resource_group.rgazuredevops.name
   location                 = azurerm_resource_group.rgazuredevops.location
   account_tier             = "Standard"
@@ -20,7 +20,7 @@ resource "azurerm_storage_account" "saazuredevops" {
 }
 
 resource "azurerm_storage_container" "scazuredevops" {
-   name = "scazuredevops-baz"
+   name = "scazuredevopsbaz"
    resource_group_name = azurerm_resource_group.rgazuredevops.name
    storage_account_name = azurerm_storage_account.saazuredevops.name
    container_access_type = "blob"
